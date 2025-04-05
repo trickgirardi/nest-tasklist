@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <!-- Tinha uma tag de fechamento do <html> aqui: -->
+  <!-- </html> -->
+  <head>
+    <title>TAREFAS-DO-DIA</title>
+  </head>
+  <body>
+    <ul>
+      <li>comprar agua</li>
+    </ul>
+    <input />
+    <button onclick="add()">adicionar</button>
+    <script>
+      // estado da aplicação
+      const tarefas = ["comprar agua"];
+
+      console.log(tarefas);
+
+      // esse "tarefas.push" deve estar apenas dentro da função "add()"
+      // tarefas.push("nova tarefa");
+
+      function add() {
+        const input = document.querySelector("input");
+        const tarefa = input.value;
+
+        tarefas.push(tarefa);
+        input.value = "";
+
+        console.log(tarefas);
+        render(tarefa);
+      }
+
+      function render(tarefa) {
+        const ul = document.querySelector("ul");
+
+        const li = document.createElement("li");
+        li.innerText = tarefa;
+        ul.appendChild(li);
+
+        // o uso da função tarefa.forEach(() => {}); era desnecessário
+      }
+    </script>
+  </body>
+</html>
