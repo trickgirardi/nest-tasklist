@@ -1,44 +1,75 @@
-<!DOCTYPE html>
 <html>
-  <!-- Tinha uma tag de fechamento do <html> aqui: -->
-  <!-- </html> -->
   <head>
-    <title>TAREFAS-DO-DIA</title>
+    <title>Vanilla Tasklist</title>
+    <style></style>
   </head>
   <body>
-    <ul>
-      <li>comprar agua</li>
-    </ul>
-    <input />
-    <button onclick="add()">adicionar</button>
+    <h1>Tasklist</h1>
+
+    <ul id="list"></ul>
+    <input type="text" id="taskInput" />
+
+    <button id="addTask" onclick="addTask()">Add</button>
+    <button id="deleteAll" onclick="deleteAll()">Remove everything</button>
     <script>
-      // estado da aplicação
-      const tarefas = ["comprar agua"];
+      const taskList = [];
+      const ulList = document.getElementById("list");
 
-      console.log(tarefas);
+      function addTask() {
+        const taskInput = document.getElementById("taskInput");
 
-      // esse "tarefas.push" deve estar apenas dentro da função "add()"
-      // tarefas.push("nova tarefa");
+        const newTask = taskInput.value.trim();
 
-      function add() {
-        const input = document.querySelector("input");
-        const tarefa = input.value;
+        taskList.push(newTask);
 
-        tarefas.push(tarefa);
-        input.value = "";
+        renderList(newTask);
 
-        console.log(tarefas);
-        render(tarefa);
+        taskInput.value = "";
       }
 
-      function render(tarefa) {
-        const ul = document.querySelector("ul");
+      function updateTask(index) {
+        const newText = prompt(
+          "Digite o novo texto da tarefa:",
+          taskList[index]
+        );
 
-        const li = document.createElement("li");
-        li.innerText = tarefa;
-        ul.appendChild(li);
+        taskList[index] = newText;
+        renderList();
+      }
 
-        // o uso da função tarefa.forEach(() => {}); era desnecessário
+      function deleteOne(index) {
+        taskList.splice(index, 1);
+        renderList();
+      }
+
+      function deleteAll() {
+        taskList.length = 0;
+        renderList();
+      }
+
+      function renderList() {
+        ulList.innerHTML = "";
+
+        taskList.forEach((task, index) => {
+          const newItem = document.createElement("li");
+          newItem.id = `task-${index + 1}`;
+
+          const taskText = document.createElement("span");
+          taskText.innerText = task;
+
+          const editButton = document.createElement("button");
+          editButton.innerText = "Editar";
+          editButton.onclick = () => updateTask(index);
+
+          const removeButton = document.createElement("button");
+          removeButton.innerText = "Remover";
+          removeButton.onclick = () => deleteOne(index);
+
+          newItem.appendChild(taskText);
+          newItem.appendChild(editButton);
+          newItem.appendChild(removeButton);
+          ulList.appendChild(newItem);
+        });
       }
     </script>
   </body>
