@@ -21,6 +21,10 @@ export class UsersService {
     return user;
   }
 
+  async count() {
+    return this.db.countUsers();
+  }
+
   async update(id: string, updateUserDto: UpdateUserDto) {
     return this.db.updateUser(id, updateUserDto);
   }
