@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { DatabaseService } from '../database/database.service';
+import { DatabaseService } from '../../shared/infra/database/database.service';
 import { CreateUserDto } from './dto/create-user.dto';
-import { UserFilters } from 'src/shared/types';
+import { UserFilters } from 'src/shared/definitions/types';
 import { UpdateUserDto } from './dto/update-user.dto';
 
 @Injectable()

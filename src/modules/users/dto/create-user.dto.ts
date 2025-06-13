@@ -1,5 +1,5 @@
 import { IsEmail, IsOptional, IsString } from 'class-validator';
-import { CreateUserData } from 'src/shared/types';
+import { CreateUserData } from 'src/shared/definitions/types';
 
 export class CreateUserDto implements CreateUserData {
   @IsEmail()

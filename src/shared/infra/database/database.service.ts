@@ -7,7 +7,7 @@ import {
   UpdateTaskData,
   UpdateUserData,
   UserFilters,
-} from 'src/shared/types';
+} from 'src/shared/definitions/types';
 
 @Injectable()
 export class DatabaseService

@@ -1,6 +1,6 @@
 import { Type } from 'class-transformer';
 import { IsString, IsOptional, IsDate, IsEmail } from 'class-validator';
-import { UserFilters } from 'src/shared/types';
+import { UserFilters } from 'src/shared/definitions/types';
 
 export class UserFiltersDto implements UserFilters {
   @IsOptional()
