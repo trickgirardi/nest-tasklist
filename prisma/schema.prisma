@@ -22,12 +22,14 @@ enum Priority {
 }
 
 model User {
-  id           String   @id @default(uuid())
-  email        String   @unique
-  passwordHash String
-  name         String?
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  id                String   @id @default(uuid())
+  email             String   @unique
+  passwordHash      String
+  name              String?
+  confirmationToken String?  @unique // TODO: improve confirmation token implementation (use jwt later)
+  isEmailConfirmed  Boolean  @default(false)
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
 
   tasks Task[]
 

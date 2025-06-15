@@ -7,6 +7,7 @@ import {
   Param,
   Delete,
   Query,
+  BadRequestException,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -20,6 +21,15 @@ export class UsersController {
   @Post()
   create(@Body() createUserDto: CreateUserDto) {
     return this.usersService.create(createUserDto);
+  }
+
+  @Get('confirm-email/:token')
+  confirmEmail(@Param('token') token: string) {
+    if (!token || token.length !== 64) {
+      throw new BadRequestException('Token inválido');
+    }
+
+    return this.usersService.confirmEmail(token);
   }
 
   @Get()
