@@ -2,6 +2,7 @@ export interface CreateUserData {
   email: string;
   passwordHash: string;
   name?: string;
+  confirmationToken?: string;
 }
 
 export interface UpdateUserData {
